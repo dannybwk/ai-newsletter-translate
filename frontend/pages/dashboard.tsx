@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Dashboard() {
   const [emails] = useState([
@@ -8,22 +10,26 @@ export default function Dashboard() {
   const [selected, setSelected] = useState(emails[0]);
 
   return (
-    <div className="flex h-screen">
-      <aside className="w-1/4 bg-gray-100 p-4">
-        <h2 className="text-lg font-semibold mb-4">電子報列表</h2>
-        {emails.map(email => (
-          <div key={email.id} onClick={() => setSelected(email)} className="cursor-pointer mb-2 hover:underline">
-            {email.subject}
-          </div>
-        ))}
-      </aside>
-      <main className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-2">{selected.subject}</h1>
-        <h2 className="text-lg font-semibold mt-4 mb-1">重點摘要</h2>
-        <p>{selected.summary}</p>
-        <h2 className="text-lg font-semibold mt-4 mb-1">完整翻譯</h2>
-        <p>{selected.translation}</p>
-      </main>
+    <div>
+      <Header />
+      <div className="flex h-screen">
+        <aside className="w-1/4 bg-gray-100 p-4">
+          <h2 className="text-lg font-semibold mb-4">電子報列表</h2>
+          {emails.map(email => (
+            <div key={email.id} onClick={() => setSelected(email)} className="cursor-pointer mb-2 hover:underline">
+              {email.subject}
+            </div>
+          ))}
+        </aside>
+        <main className="flex-1 p-6">
+          <h1 className="text-2xl font-bold mb-2">{selected.subject}</h1>
+          <h2 className="text-lg font-semibold mt-4 mb-1">重點摘要</h2>
+          <p>{selected.summary}</p>
+          <h2 className="text-lg font-semibold mt-4 mb-1">完整翻譯</h2>
+          <p>{selected.translation}</p>
+        </main>
+      </div>
+      <Footer />
     </div>
   );
 }
